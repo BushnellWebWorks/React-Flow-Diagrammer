@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500" rel="stylesheet">
+	<script src="sample_json.js"></script>
+	<script>/*masterPlan.startGroup = 'ABCDE12345'; */</script>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- div><button onclick="diagramCheckboxAction('group')">Dummy Group 'em</button></div -->
+    <div id="tree-diagram"></div>
+    <script>
+	    function diagramCheckboxAction( action, deets ) {
+		    if ( undefined === chatDiagramData ) {
+			    alert('sorry, there was an error.');
+			    return;
+		    }
+		    
+		    switch( action ) {
+			 	case 'group':
+			 		if ( !(chatDiagramData.selectedNodes instanceof Array) ) { console.log('group error - no selectedNodes or not an array'); return; }
+			 		var groupID;
+			 		if ( !deets || !deets.groupID ) {
+			 			groupID = window.prompt("What's the name of this group?", (chatDiagramData.lastGroupID) ? chatDiagramData.lastGroupID : '');
+			 		} else {
+				 		groupID = deets.groupID;	
+				 	}
+			 		if ( !groupID || !groupID.length ) { return; }
+			 		for ( var ix=0; ix< chatDiagramData.selectedNodes.length; ix++ ) {
+				 		var bNode = masterPlan.blueprint[0].nodes[ chatDiagramData.selectedNodes[ix] ];
+				 		if ( undefined === bNode ) { continue; }
+				 		bNode.groupID = groupID;
+				 	}
+				 	chatDiagramData.lastGroupID = groupID;
+				 	dispatchCustom();
+			 	break; 
+			 	
+			 	case 'ungroup':
+			 		if ( !(chatDiagramData.selectedNodes instanceof Array) ) { console.log('ungroup error - no selectedNodes or not an array'); return; }
+			 		var toGroupID = ( deets && deets.groupID && deets.groupID != '__root' ) ? deets.groupID : null;
+			 		for ( var ix=0; ix< chatDiagramData.selectedNodes.length; ix++ ) {
+				 		if ( chatDiagramData.selectedNodes[ix][0] != '@' ) { continue; }
+				 		var bNodes = Object.keys( masterPlan.blueprint[0].nodes).filter( function( key ) {
+					 		return (masterPlan.blueprint[0].nodes[ key ].groupID == chatDiagramData.selectedNodes[ix].substring(1));
+					 	} );
+					 	for ( var iix=0; iix< bNodes.length; iix++ ) {
+				 			var bNode = masterPlan.blueprint[0].nodes[ bNodes[iix] ];
+					 		if ( undefined === bNode ) { continue; }
+					 		bNode.groupID = toGroupID;
+						}
+				 	}
+				 	chatDiagramData.lastGroupID = groupID;
+				 	dispatchCustom();
+			 	break; 
+			}
+	    }
+	    function dispatchCustom() {
+		    // not compatible with IE, any version
+		    var ev = new Event('chatdataupdated');
+		    window.dispatchEvent(ev);
+		}
+    </script>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

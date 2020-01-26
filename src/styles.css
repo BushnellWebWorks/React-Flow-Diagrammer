@@ -1,0 +1,161 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.newChallengeButtons {
+  text-align: center;
+  padding: 2em 0; }
+  .newChallengeButtons button.newChallengeButton {
+    margin: 0 1em;
+    appearance: none;
+    -webkit-appearance: none;
+    vertical-align: middle;
+    font-family: Oswald,"Arial Narrow", sans-serif;
+    font-size: 18px;
+    padding: 0.3em 0.6em;
+    color: #FFF;
+    background-color: #096;
+    border: none;
+    outline: none;
+    border-radius: 8px; }
+
+.diagramContain {
+  position: relative;
+  text-align: center; }
+  .diagramContain.clickMode-group {
+    background-color: #eef; }
+  .diagramContain > canvas {
+    position: relative;
+    margin: 0 auto; }
+  .diagramContain .clickMode-container {
+    position: fixed;
+    z-index: 200;
+    top: 32px;
+    right: 0;
+    background-color: #ffe;
+    padding: 12px; }
+    .diagramContain .clickMode-container .clickMode-button {
+      border: 2px solid #66f;
+      border-radius: 8px;
+      padding: 8px;
+      background-color: #FFF;
+      color: #666;
+      cursor: pointer; }
+      .diagramContain .clickMode-container .clickMode-button.clickMode-group-active {
+        background-color: #66f;
+        color: #fff; }
+  .diagramContain .diagramIcons {
+    position: absolute;
+    top: 0; }
+    .diagramContain .diagramIcons .node-container {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      overflow: visible;
+      cursor: pointer;
+      transform: translateX(-30px) translateY(-30px);
+      -webkit-transform: translateX(-30px) translateY(-30px); }
+      .diagramContain .diagramIcons .node-container .flow-icon-shape {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        overflow: visible;
+        font-size: 20px;
+        overflow: visible;
+        font-size: 20px; }
+        .diagramContain .diagramIcons .node-container .flow-icon-shape.flow-icon-shape-intake {
+          background-color: #069;
+          border-radius: 50%; }
+        .diagramContain .diagramIcons .node-container .flow-icon-shape.flow-icon-shape-action {
+          background-color: #A30;
+          border-radius: 50%; }
+        .diagramContain .diagramIcons .node-container .flow-icon-shape.flow-icon-shape-subchat {
+          background-color: #A93;
+          border-radius: 15px; }
+        .diagramContain .diagramIcons .node-container .flow-icon-shape.flow-icon-shape-decision:before {
+          content: ' ';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #099;
+          border-radius: 25%;
+          transform: rotate(45deg); }
+        .diagramContain .diagramIcons .node-container .flow-icon-shape .flow-icon {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          color: #ddd;
+          transform: translateX(-50%) translateY(-50%);
+          -webkit-transform: translateX(-50%) translateY(-50%); }
+      .diagramContain .diagramIcons .node-container .icon-label {
+        position: absolute;
+        width: 180px;
+        top: 95%;
+        left: 50%;
+        transform: translateX(-90px);
+        -webkit-transform: translateX(-90px);
+        box-sizing: border-box;
+        padding: 0.25em 0.5em;
+        border-radius: 4px;
+        font-family: Oswald, "Arial Narrow", sans-serif;
+        font-size: 20px;
+        text-align: center;
+        background-color: rgba(51, 51, 51, 0.8);
+        color: #FFF;
+        white-space: nowrap;
+        overflow: hidden; }
+      .diagramContain .diagramIcons .node-container .node-checkmark {
+        position: absolute;
+        left: 70px;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        background-image: radial-gradient(white, rgba(255, 255, 255, 0.6) 67%);
+        box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.6); }
+        .diagramContain .diagramIcons .node-container .node-checkmark:after {
+          content: '✓';
+          font-size: 36px;
+          color: rgba(24, 24, 48, 0.8); }
+      .diagramContain .diagramIcons .node-container .node-checkbox-container {
+        position: absolute;
+        display: block;
+        left: 70px;
+        top: 1px;
+        padding: 4px;
+        border-radius: 50%;
+        background-image: radial-gradient(white, rgba(255, 255, 255, 0.6) 67%);
+        box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        z-index: 200; }
+        .diagramContain .diagramIcons .node-container .node-checkbox-container input {
+          width: 18px;
+          height: 18px;
+          appearance: none;
+          border: 1px solid #888;
+          border-radius: 6px;
+          outline: none; }
+          .diagramContain .diagramIcons .node-container .node-checkbox-container input:checked {
+            background-color: rgba(255, 220, 155, 0.8); }
+            .diagramContain .diagramIcons .node-container .node-checkbox-container input:checked:after {
+              content: '✓';
+              position: absolute;
+              left: auto;
+              top: -2px;
+              font-size: 24px;
+              color: #009; }
+
+@media (max-width: 500px) {
+  .diagramContain > canvas {
+    width: 320px; }
+  .diagramIcons {
+    transform-origin: 50% 0;
+    transform: scale(0.64); } }
+
+.compoContain {
+  background-color: #fff; }
+
+/*# sourceMappingURL=styles.map */
