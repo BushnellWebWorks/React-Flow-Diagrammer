@@ -9,19 +9,15 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_a02eb75aba5e174fee06823",
-
             },
             {
               "tag": "_fdde47aed25e17503095110",
-
             },
             {
               "tag": "_a74b01d5065e17504d773f8",
-
             },
             {
               "tag": "_8e8d930d575e174ffe93ee6",
-
             }
           ],
           "groupID": "Browse Shoes",
@@ -33,7 +29,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -45,7 +40,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -57,23 +51,18 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_8e8d930d575e174ffe93ee6",
-
             },
             {
               "tag": "_a02eb75aba5e174fee06823",
-
             },
             {
               "tag": "_18cd04d3f05e17501383fdc",
-
             },
             {
               "tag": "_fdde47aed25e17503095110",
-
             },
             {
               "tag": "_a74b01d5065e17504d773f8",
-
             }
           ],
           "groupID": "",
@@ -85,7 +74,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -97,7 +85,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -109,27 +96,21 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_a02eb75aba5e174fee06823",
-
             },
             {
               "tag": "_18cd04d3f05e17501383fdc",
-
             },
             {
               "tag": "_fdde47aed25e17503095110",
-
             },
             {
               "tag": "_ffcd42e7365e1750baaf259",
-
             },
             {
               "tag": "_d07e27cf705e1756f7c770c",
-
             },
             {
               "tag": "_a74b01d5065e17504d773f8",
-
             }
           ],
           "groupID": "",
@@ -141,39 +122,30 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_1b81b3bb825e1754463259b",
-
             },
             {
               "tag": "_7b82c9aeec5e17547186740",
-
             },
             {
               "tag": "_6ecdbf04e25e17551af23a5",
-
             },
             {
               "tag": "_1b9b1154dc5e17553fa3ba0",
-
             },
             {
               "tag": "_c18018c9c85e175562934c5",
-
             },
             {
               "tag": "_18cd04d3f05e17501383fdc",
-
             },
             {
               "tag": "_fdde47aed25e17503095110",
-
             },
             {
               "tag": "_a74b01d5065e17504d773f8",
-
             },
             {
               "tag": "_8e8d930d575e174ffe93ee6",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -185,7 +157,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "",
@@ -197,7 +168,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "",
-
             }
           ],
           "groupID": "Browse Clothing",
@@ -209,11 +179,9 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_664f359c1c5e1756cd9f946",
-
             },
             {
               "tag": "_fc090d072f5e1756da5176c",
-
             }
           ],
           "groupID": "",
@@ -225,11 +193,9 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_664f359c1c5e1756cd9f946",
-
             },
             {
               "tag": "_fc090d072f5e1756da5176c",
-
             }
           ],
           "groupID": "",
@@ -241,7 +207,6 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_8e8d930d575e174ffe93ee6",
-
             }
           ],
           "groupID": "",
@@ -253,15 +218,12 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_a02eb75aba5e174fee06823",
-
             },
             {
               "tag": "_18cd04d3f05e17501383fdc",
-
             },
             {
               "tag": "_a74b01d5065e17504d773f8",
-
             }
           ],
           "groupID": "Browse Accessories",
@@ -273,11 +235,9 @@ var masterPlan = {
           "exits": [
             {
               "tag": "_8e8d930d575e174ffe93ee6",
-
             },
             {
               "tag": "_ce6f83701e5e175ba464601",
-              
             }
           ],
           "groupID": "",

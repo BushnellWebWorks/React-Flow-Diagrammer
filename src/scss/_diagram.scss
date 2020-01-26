@@ -1,3 +1,4 @@
+// canvas width is now calculated in component
 // $canvasWidth: 900px;
 // $canvasWidthHalf: $canvasWidth / 2;
 
@@ -20,10 +21,14 @@
 	}
 }
 
-
+#tree-diagram {
+	display:flex;
+	flex-direction:row;
+	justify-content: center;
+}
 .diagramContain {
 	position: relative;
-	text-align: center;
+	transform-origin: 50% 0%;
 	&.clickMode-group {
 		background-color: #eef;
 	}
@@ -169,13 +174,4 @@
 		
 		}
 	}
-}
-@media( max-width:500px ) {
-	.diagramContain > canvas {
-		width: 320px;	
-	}
-	.diagramIcons {
-		transform-origin: 50% 0;
-		transform: scale(0.64);	
-	}	
 }

@@ -3,7 +3,7 @@ import buildDisplayStack from './diagram/display'
 import { addLine } from './diagram/draw'
 import DiagramIcon from './DiagramIcon';
 
-const chartSpecs = {
+let chartSpecs = {
   w: 900,
   marginY: 50,
   nodeWidth: 220,
@@ -13,9 +13,8 @@ const chartSpecs = {
   iconHeight: 60
 };
 
-const diagramIconsStyle = {
-  width: `${chartSpecs.w}px`,
-  left: `calc(50% - ${Math.floor( chartSpecs.w/2 )}px)`
+let diagramIconsStyle = {
+  width: `${chartSpecs.w}px`,  // could set to window.innerWidth depending on use case
 }
 
 class ChatDiagram extends Component {
@@ -24,8 +23,9 @@ class ChatDiagram extends Component {
 		this.el = {}
 		this.state = {
       displayStack:{},
-      clickMode: null,
-      selectedNodes: [],
+      clickMode: null, // either 'group mode' or configurable action when node is clicked
+      selectedNodes: [], // used while grouping
+      shrinkWidth:0, // Canvas requires fixed pixel value, so set this on resize; if window < charSpecs width then redraw with CSS scaling
     };
     this.province = {
       nodes: {},
@@ -34,9 +34,12 @@ class ChatDiagram extends Component {
       mustRefresh: false, // set when props have changed (e.g. data updated)
       groupTree:{}, // lookup table to help diagram display
       alreadySeen: [], //helper to avoid infinite recursion
+      resizeTO:null, // timeout for window.resize
     };
 		this.cvs = null;
 		this.ctx = null;
+    this.handleResize = this.handleResize.bind(this);
+    this.didResize = this.didResize.bind(this);
 		this.addLines = this.addLines.bind(this);
 		this.diagramDigest = this.diagramDigest.bind(this);
     this.toggleGroupMode = this.toggleGroupMode.bind(this);
@@ -60,6 +63,9 @@ class ChatDiagram extends Component {
     }
     this.copyPropNodes();
     this.digestAndDisplay( this.province.startGroup || null );
+    if ( window ) {
+      window.addEventListener( 'resize', this.handleResize );
+    }
 	}
 
   // digestAndDisplay relies on component data to build the digest and set the state.
@@ -82,6 +88,19 @@ class ChatDiagram extends Component {
       this.province.mustRefresh = false;
       this.copyPropNodes();
       this.clearClickMode();
+    }
+  }
+
+  handleResize() {
+    if ( this.province.resizeTO ) { clearTimeout( this.province.resizeTO ) }
+    this.province.resizeTO = setTimeout( this.didResize, 900 );
+  }
+
+  didResize() {
+    if ( !window || !window.innerWidth ) { return; }
+    const shrinkWidth = (chartSpecs.w > window.innerWidth) ? window.innerWidth : 0;
+    if ( shrinkWidth !== this.state.shrinkWidth ) {
+      this.setState( {shrinkWidth} )
     }
   }
 
@@ -396,6 +415,13 @@ class ChatDiagram extends Component {
   }
 
 	render() {
+
+    // canvas is fixed width, so (css) shrink to fit window if necessary
+    const shrinkScale = ( this.state.shrinkWidth && this.state.shrinkWidth < chartSpecs.w ) ? this.state.shrinkWidth / chartSpecs.w : 1;
+    const diagramContainStyle = {
+      transform: `scale( ${shrinkScale} )`
+    }
+
 		const canvasHeight = Object.keys( this.state.displayStack ).length * chartSpecs.nodeHeight + 2 * chartSpecs.marginY;
 		const { displayStack } = this.state;
 		let unconnected = {};
@@ -405,7 +431,7 @@ class ChatDiagram extends Component {
     }
     const groupActionLabel = (this.groupOrUngroup()) ? 'Group selected items' : 'Ungroup';
 		return (
-			<div className={`diagramContain clickMode-${this.state.clickMode}`}>
+			<div className={`diagramContain clickMode-${this.state.clickMode}`} style={diagramContainStyle}>
 				<canvas ref={ el => {this.cvs = el} } width={chartSpecs.w} height={canvasHeight} />
 				<div className="diagramIcons" style={diagramIconsStyle}>
         { Object.keys( displayStack ).map( (nid,ix) => {
