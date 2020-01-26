@@ -17,7 +17,7 @@ let diagramIconsStyle = {
   width: `${chartSpecs.w}px`,  // could set to window.innerWidth depending on use case
 }
 
-class ChatDiagram extends Component {
+class FlowDiagram extends Component {
 	constructor( props ) {
 		super(props);
 		this.el = {}
@@ -59,7 +59,7 @@ class ChatDiagram extends Component {
 	componentDidMount() {
 		this.ctx = this.cvs.getContext('2d');
     if ( window) {
-      window.chatDiagramData = {};
+      window.flowDiagramData = {};
     }
     this.copyPropNodes();
     this.digestAndDisplay( this.province.startGroup || null );
@@ -160,8 +160,8 @@ class ChatDiagram extends Component {
           selectedNodes = selectedNodes.filter( iid => ( iid != id ) );
         }
         this.setState({selectedNodes}, () => {
-          if ( window && window.chatDiagramData ) {
-            window.chatDiagramData.selectedNodes = this.state.selectedNodes;
+          if ( window && window.flowDiagramData ) {
+            window.flowDiagramData.selectedNodes = this.state.selectedNodes;
           }
         });
         break;
@@ -481,4 +481,4 @@ class ChatDiagram extends Component {
 	}
 
 }
-export default ChatDiagram;
+export default FlowDiagram;
