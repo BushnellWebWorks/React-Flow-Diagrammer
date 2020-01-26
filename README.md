@@ -1,6 +1,6 @@
 # React-Flow-Diagrammer
 
-[Flow Diagram Screenshot](https://github.com/BushnellWebWorks/React-Flow-Diagrammer/blob/master/public/readme_hero.png?raw=true)
+![Flow Diagram Screenshot](https://github.com/BushnellWebWorks/React-Flow-Diagrammer/blob/master/public/readme_hero.png?raw=true)
 
 Takes a JSON object where nodes are interconnected through "exits," and visually diagrams the flow. This was originally created as part of a chat client project, where exits were routed according to user responses to questions.
 
